@@ -10,6 +10,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import {  FormsModule} from '@angular/forms';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,13 +18,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotFoundComponent,
     AddUserComponent,
     UserEditComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import {LoginComponent} from './login/login.component';
 import {UserComponent} from'./user/user.component';
 import {AddUserComponent} from'./add-user/add-user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
 
 const routes: Routes = [
-	{path:'', redirectTo: '/', pathMatch: 'full'},
+	{path:'', redirectTo: '/cp-login', pathMatch: 'full'},
+	{path:'cp-login',component:LoginComponent},
 	{path:'user',component:UserComponent},	
 	{path:'user/add-user',component:AddUserComponent},
 	{path:'user/user-edit/:id',component:UserEditComponent},

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bac"
+    }
+  },
+  "defaultProject": "bac",
+  "cli": {
+    "analytics": "f70496aa-e3b6-4261-9e33-e10ce93f0b4d"
+  }
 }

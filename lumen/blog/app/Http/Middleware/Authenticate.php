@@ -41,4 +41,12 @@ class Authenticate
 
         return $next($request);
     }
+   
 }
+/*
+Middleware : chek auth
+true-> next request =
+- Controller : generate token reuturn user + token
+false -> return login fail
+
+*/

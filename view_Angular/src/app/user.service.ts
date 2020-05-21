@@ -6,7 +6,7 @@ import {UserType} from './user';
   providedIn: 'root'
 })
 export class UserService {
-private API:string='http://localhost/api/user'
+  private API:string='http://localhost/api/user'
  constructor(	private Http: HttpClient) {}
   getUsers():Observable<UserType[]>{
     	return this.Http.get<UserType[]>(`${this.API}`);
@@ -22,6 +22,9 @@ private API:string='http://localhost/api/user'
     return this.Http.delete<UserType>(`${this.API}/${id}`);
     
   }
-  
+  searchUser(Seachname):Observable<UserType>{
+    console.log(Seachname);
+    return this.Http.post<UserType>(`${this.API}`,Seachname)
+  }
   
 }

@@ -16,9 +16,13 @@ class UserController extends Controller
         //
     }
 
-    public function showIndex()
+    public function showIndex(Request $request)
     {
+
         return response()->json(User::all());
+    }
+    public function Search(Request $request){
+        return response(["1"]);
     }
     public function SaveAddNew(Request $r){ 
         
@@ -38,6 +42,10 @@ class UserController extends Controller
         $user= User::find($id);
         $user->update($request->all());
         return response()->json($user);
+    }
+    public function login(){
+        
+       return response()->json(User::all()); 
     }
     public function DeleteUser($id){
         $user= User::destroy($id);

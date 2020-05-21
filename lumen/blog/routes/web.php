@@ -16,9 +16,16 @@ $router->get('/', function () use ($router) {
 });
 $router->group(['prefix'=>'api'],function($router){
     $router->get('user','UserController@showIndex');
+    $router->post('user','UserController@Search');
     $router->post('user/add-user','UserController@SaveAddNew');
  
     $router->get('user/{id}','UserController@showIndexUser');
     $router->put('user/{id}','UserController@SaveEditUser');
     $router->delete('user/{id}','UserController@DeleteUser');
+
+    $router->post('login','UserController@login');
+    //product
+    $router->get('products','ProductController@showProducts');
+    //login
+    $router->post('cp-login','LoginController@postLogin');
 });

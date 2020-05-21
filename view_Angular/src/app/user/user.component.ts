@@ -8,7 +8,7 @@ import { UserType } from '../user';
 })
 export class UserComponent implements OnInit {
   users: UserType[];
-  Seachname:string;
+  
   constructor(
   	private UserService:UserService,
   	) { }
@@ -24,7 +24,8 @@ export class UserComponent implements OnInit {
   }
 
   searchUser(){
-
+   
+    
   }
 
   deleteUser(id){
