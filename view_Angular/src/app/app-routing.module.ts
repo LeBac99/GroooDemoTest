@@ -5,6 +5,7 @@ import {UserComponent} from'./user/user.component';
 import {AddUserComponent} from'./add-user/add-user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {UserEditComponent} from './user-edit/user-edit.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
 	{path:'', redirectTo: '/cp-login', pathMatch: 'full'},
@@ -12,6 +13,7 @@ const routes: Routes = [
 	{path:'user',component:UserComponent},	
 	{path:'user/add-user',component:AddUserComponent},
 	{path:'user/user-edit/:id',component:UserEditComponent},
+	{path:'search',component:SearchComponent},
 	{path:'**',component:NotFoundComponent},
 
 ];

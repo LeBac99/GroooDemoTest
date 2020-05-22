@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { UserType } from '../user';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -8,9 +9,11 @@ import { UserType } from '../user';
 })
 export class UserComponent implements OnInit {
   users: UserType[];
-  
+  usersSearch:UserType;
+  search:string;
   constructor(
-  	private UserService:UserService,
+    private UserService:UserService,
+    private router: Router
   	) { }
 
   ngOnInit() {
@@ -24,7 +27,13 @@ export class UserComponent implements OnInit {
   }
 
   searchUser(){
-   
+    // console.log()
+    this.UserService.searchUser(this.search).subscribe((data:any)=>{
+      // console.log(data);
+      this.usersSearch=data.data;
+      // this.router.navigateByUrl('/search');
+
+    })
     
   }
 

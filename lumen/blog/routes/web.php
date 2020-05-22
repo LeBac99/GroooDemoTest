@@ -14,9 +14,12 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->get('foo', function () {
+    return 'Hello World';
+});
 $router->group(['prefix'=>'api'],function($router){
     $router->get('user','UserController@showIndex');
-    $router->post('user','UserController@Search');
+    $router->post('user/search','UserController@Search');
     $router->post('user/add-user','UserController@SaveAddNew');
  
     $router->get('user/{id}','UserController@showIndexUser');
@@ -27,5 +30,6 @@ $router->group(['prefix'=>'api'],function($router){
     //product
     $router->get('products','ProductController@showProducts');
     //login
-    $router->post('cp-login','LoginController@postLogin');
+    $router->post('cp-login',['middleware'=>'checkLogin','uses'=>'LoginController@postLogin']);   
 });
+

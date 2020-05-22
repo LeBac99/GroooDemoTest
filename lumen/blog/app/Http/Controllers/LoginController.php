@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-
-use Illuminate\Support\Facades\Hash;
-
-use Illuminate\Http\Request;
-
-use App\Http\Middleware\Authenticate;
-
-use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Str;
 use App\User;
-
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 
 class LoginController extends Controller
@@ -36,17 +28,16 @@ class LoginController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-   public function postLogin(Request $request)
+   public function postLogin(Request $r)
 
    {
-      if(Auth::attempt(['email' => $request->email, 'password' => $request->password]) ){
-               
-        return "dung mat khau";
-                               
-                }
-        return "sai mat khau";
+   
+        $user = User::where('email',$r->email)->first();
+        $user->token = str::random(64);
+        $user->save();
+        return response($user);
+      
    }
 
 }    
-
 ?>

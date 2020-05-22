@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UserType} from './user';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private API:string='http://localhost/api/user'
+  private APISEARCH:string='http://localhost/api/user/search'
+  private APIURL:string='http://localhost/api/cp-login'
  constructor(	private Http: HttpClient) {}
   getUsers():Observable<UserType[]>{
     	return this.Http.get<UserType[]>(`${this.API}`);
@@ -22,9 +25,20 @@ export class UserService {
     return this.Http.delete<UserType>(`${this.API}/${id}`);
     
   }
-  searchUser(Seachname):Observable<UserType>{
-    console.log(Seachname);
-    return this.Http.post<UserType>(`${this.API}`,Seachname)
+  searchUser(usersSearch):Observable<UserType>{
+    console.log(usersSearch);
+    return this.Http.post<UserType>(`${this.APISEARCH}`,{'key':usersSearch})
   }
-  
+  getLogin(users):Observable<UserType>{
+    console.log(users)
+    return this.Http.post<UserType>(`${this.APIURL}`,users).pipe(
+      map(res=>{
+        localStorage.setItem('users',JSON.stringify(res));
+        return res
+      })
+    )
+  }
+  Logout(){
+    localStorage.removeItem('users');
+  }
 }

@@ -11,6 +11,7 @@ import {  FormsModule} from '@angular/forms';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { LoginComponent } from './login/login.component';
     AddUserComponent,
     UserEditComponent,
     LoginComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,

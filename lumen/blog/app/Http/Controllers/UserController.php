@@ -22,7 +22,19 @@ class UserController extends Controller
         return response()->json(User::all());
     }
     public function Search(Request $request){
-        return response(["1"]);
+        if (!$request->has('key') || empty($request->key)) {
+            
+            $users = User::all();
+
+        } else {
+            $kw = $request->key;
+            $users = User::where('name', 'like', "%$kw%")
+                ->paginate(5);
+            $users->withPath("?keyword=$kw");
+            
+        }
+        return response()->json($users);
+        
     }
     public function SaveAddNew(Request $r){ 
         
