@@ -1,18 +1,39 @@
 <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <form  >
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" name="email" [(ngModel)]='user.email' placeholder="Enter email" >
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <form [formGroup]="angForm">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" formControlName="email"
+          [(ngModel)]='user.email' placeholder="Enter email">
+      </div>
+      <div
+        *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['email'].errors.required">
+          Vui long nhập email .
+        </div>
+        <div *ngIf="angForm.controls['email'].errors.email">
+          Vui lòng nhập đúng định dạng email .
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" formControlName="password"
+          [(ngModel)]='user.password' placeholder="Password">
+      </div>
+      <div
+        *ngIf="angForm.controls['password'].invalid && (angForm.controls['password'].dirty || angForm.controls['password'].touched)"
+        class="alert alert-danger">
+        <div *ngIf="angForm.controls['password'].errors.required">
+          Không được để trống password!
+        </div>
+      </div>
+      <a class="" href="password">Forgot Password</a><br>
+      <button type="button" [disabled]="angForm.pristine || angForm.invalid" (click)="getLogin()"
+        class="btn btn-primary">Submit</button>
+    </form>
 
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" name="password" [(ngModel)]='user.password' placeholder="Password" >
-            </div>
-            <button type="button" (click)="getLogin()" class="btn btn-primary">Submit</button>
-          </form>
-    </div>
-    <div class="col-md-4"></div>
+  </div>
+  <div class="col-md-4"></div>
 </div>

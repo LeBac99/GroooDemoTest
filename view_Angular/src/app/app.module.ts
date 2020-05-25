@@ -12,6 +12,9 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SearchComponent } from './search/search.component';
+import { PasswordComponent } from './password/password.component';
+import { EnterpasswordComponent } from './enterpassword/enterpassword.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,9 @@ import { SearchComponent } from './search/search.component';
     UserEditComponent,
     LoginComponent,
     SearchComponent,
+    PasswordComponent,
+    EnterpasswordComponent,
+    
   ],
   imports: [
     BrowserModule,

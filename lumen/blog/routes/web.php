@@ -29,6 +29,12 @@ $router->group(['prefix'=>'api'],function($router){
     $router->post('login','UserController@login');
     //product
     $router->get('products','ProductController@showProducts');
+    //mail
+    $router->get('mail','MailController@mail');
+    //password
+    $router->post('password','UserController@password');
+
+    $router->get('password','UserController$savePassword');
     //login
     $router->post('cp-login',['middleware'=>'checkLogin','uses'=>'LoginController@postLogin']);   
 });

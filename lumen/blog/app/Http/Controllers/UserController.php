@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MyEmail;
 class UserController extends Controller
 {
     /**
@@ -62,6 +64,20 @@ class UserController extends Controller
     public function DeleteUser($id){
         $user= User::destroy($id);
         return response()->json($user);
+    }
+    public function password(Request $request){
+        $email= User::where('email',$request->email)->first();
+        $details="ok";
+        $test= $email->email;
+        // return response($test);
+        
+        Mail::to($test)->send(new MyEmail($details));
+        return response($email);
+        
+        // return response(['1']);
+    }
+    public function savePassword(){
+        this.password;
     }
     //
 }

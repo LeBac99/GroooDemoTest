@@ -47,5 +47,8 @@ export class UserComponent implements OnInit {
       // })
     }
   }
+  Logout(){
+    this.router.navigate(['/cp-login']);
+  }
 
 }

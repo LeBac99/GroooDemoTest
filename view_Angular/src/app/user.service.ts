@@ -10,6 +10,7 @@ export class UserService {
   private API:string='http://localhost/api/user'
   private APISEARCH:string='http://localhost/api/user/search'
   private APIURL:string='http://localhost/api/cp-login'
+  private APIPASS:string='http://localhost/api/password'
  constructor(	private Http: HttpClient) {}
   getUsers():Observable<UserType[]>{
     	return this.Http.get<UserType[]>(`${this.API}`);
@@ -38,7 +39,12 @@ export class UserService {
       })
     )
   }
+  password(email):Observable<UserType>{
+    console.log(email);
+    return this.Http.post<UserType>(`${this.APIPASS}`,email)
+  }
   Logout(){
     localStorage.removeItem('users');
   }
+ 
 }

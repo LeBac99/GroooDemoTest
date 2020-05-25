@@ -37,7 +37,7 @@ $app->withEloquent();
 | your own bindings here if you like or you can make another file.
 |
 */
-
+    
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
@@ -50,6 +50,7 @@ $app->singleton(
 $app->middleware([
     App\Http\Middleware\CorsMiddleware::class
 ]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -62,6 +63,8 @@ $app->middleware([
 */
 
 $app->configure('app');
+$app->configure('services');
+$app->configure('mail');
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +87,11 @@ $app->routeMiddleware([
 $app->routeMiddleware([
     'checkLogin' => App\Http\Middleware\checkLogin::class,
 ]);
+$app->withFacades(true, [
+    'Illuminate\Support\Facades\Mail' => 'Mail',
+]);
 
+     
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
@@ -96,7 +103,8 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
