@@ -25,8 +25,7 @@ export class UserEditComponent implements OnInit {
   		})
   	})
   }
-  saveUser(){
-  	
+  saveUser(){	
   	this.UserService.saveUser(this.user).subscribe(data=>{
   		this.router.navigateByUrl('/user');
   	})

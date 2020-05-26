@@ -19,7 +19,7 @@ const routes: Routes = [
 	{path:'user/user-edit/:id',component:UserEditComponent},
 	{path:'search',component:SearchComponent},
 	{path:'password',component:PasswordComponent},
-	{path:'enterpassword', component:EnterpasswordComponent},
+	{path:'ressetpassword/:token', component:EnterpasswordComponent},
 	{path:'**',component:NotFoundComponent},
 
 ];

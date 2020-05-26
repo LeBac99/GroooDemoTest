@@ -4,5 +4,6 @@ export class UserType{
     email:string;
     avatar:string;
     password:string;
+    token:string;
 
 }

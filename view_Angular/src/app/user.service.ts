@@ -11,6 +11,7 @@ export class UserService {
   private APISEARCH:string='http://localhost/api/user/search'
   private APIURL:string='http://localhost/api/cp-login'
   private APIPASS:string='http://localhost/api/password'
+  private APIPASSW:string='http://localhost/api/save-password'
  constructor(	private Http: HttpClient) {}
   getUsers():Observable<UserType[]>{
     	return this.Http.get<UserType[]>(`${this.API}`);
@@ -22,7 +23,7 @@ export class UserService {
   	console.log(user);
     return this.Http.put<UserType>(`${this.API}/${user.id}`, user);
   }
-   deleteUser(id):Observable<UserType>{
+  deleteUser(id):Observable<UserType>{
     return this.Http.delete<UserType>(`${this.API}/${id}`);
     
   }
@@ -40,8 +41,15 @@ export class UserService {
     )
   }
   password(email):Observable<UserType>{
-    console.log(email);
+    // console.log(email);
     return this.Http.post<UserType>(`${this.APIPASS}`,email)
+  }
+  gettoken(token):Observable<UserType>{
+    return this.Http.get<UserType>(`${this.APIPASSW}/${token}`);
+  }
+  savePassword(token):Observable<UserType>{
+    console.log(token);
+    return this.Http.put<UserType>(`${this.APIPASSW}/${token.id}`,token)
   }
   Logout(){
     localStorage.removeItem('users');

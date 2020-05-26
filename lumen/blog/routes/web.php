@@ -33,9 +33,10 @@ $router->group(['prefix'=>'api'],function($router){
     $router->get('mail','MailController@mail');
     //password
     $router->post('password','UserController@password');
-
-    $router->get('password','UserController$savePassword');
+    $router->get('save-password/{token}','UserController@getpassword');
+    $router->put('save-password/{token}','UserController@savepassword');
     //login
     $router->post('cp-login',['middleware'=>'checkLogin','uses'=>'LoginController@postLogin']);   
 });
+
 
