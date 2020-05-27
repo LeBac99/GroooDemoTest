@@ -12,7 +12,13 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   user : UserType = new UserType();
   angForm: FormGroup;
-  constructor(	private router:Router, private UserService:UserService,  private fb: FormBuilder) { }
+  errs;
+  // errors:UserType;
+  constructor(	private router:Router, private UserService:UserService,  private fb: FormBuilder) {
+    if(this.UserService.currentUserValue){
+      this.router.navigate(['/user']);
+    }
+   }
 
   ngOnInit(): void {
     this.createForm();
@@ -25,9 +31,11 @@ export class LoginComponent implements OnInit {
   }
   getLogin(){
     this.UserService.getLogin(this.user).subscribe(data=>{
-      // console.log(data);
     
     this.router.navigate(['/user']);
+    },
+    error=>{
+      this.errs= Object.values(error.error)
     })
   }
  

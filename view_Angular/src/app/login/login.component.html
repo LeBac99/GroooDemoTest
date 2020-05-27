@@ -32,8 +32,8 @@
       <a class="" href="password">Forgot Password</a><br>
       <button type="button" [disabled]="angForm.pristine || angForm.invalid" (click)="getLogin()"
         class="btn btn-primary">Submit</button>
+      <p class="" style="color: red;" *ngIf="errs"></p>
     </form>
-
   </div>
   <div class="col-md-4"></div>
 </div>

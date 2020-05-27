@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, from , BehaviorSubject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {UserType} from './user';
 import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,14 @@ export class UserService {
   private APIURL:string='http://localhost/api/cp-login'
   private APIPASS:string='http://localhost/api/password'
   private APIPASSW:string='http://localhost/api/save-password'
- constructor(	private Http: HttpClient) {}
+  private currentUser :BehaviorSubject<UserType>;
+  
+ constructor(	private Http: HttpClient) {
+   this.currentUser = new BehaviorSubject<UserType>(JSON.parse(localStorage.getItem('users')))
+ }
+ public get currentUserValue():UserType{
+  return this.currentUser.value;
+}
   getUsers():Observable<UserType[]>{
     	return this.Http.get<UserType[]>(`${this.API}`);
   }
@@ -32,7 +40,7 @@ export class UserService {
     return this.Http.post<UserType>(`${this.APISEARCH}`,{'key':usersSearch})
   }
   getLogin(users):Observable<UserType>{
-    console.log(users)
+    // console.log(users)
     return this.Http.post<UserType>(`${this.APIURL}`,users).pipe(
       map(res=>{
         localStorage.setItem('users',JSON.stringify(res));

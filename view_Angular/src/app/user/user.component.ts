@@ -23,17 +23,14 @@ export class UserComponent implements OnInit {
   getUsers(){
   	 this.UserService.getUsers().subscribe(data =>{
       this.users=data;
-      // console.log(data);
+      
     });
   }
 
   searchUser(){
-    // console.log()
-    this.UserService.searchUser(this.search).subscribe((data:any)=>{
-      // console.log(data);
+    
+    this.UserService.searchUser(this.search).subscribe((data:any)=>{ 
       this.usersSearch=data.data;
-      // this.router.navigateByUrl('/search');
-
     })
     
   }
@@ -43,13 +40,12 @@ export class UserComponent implements OnInit {
       this.UserService.deleteUser(id).subscribe((result: UserType)=>{
         this.ngOnInit()
       });
-      // this.UserService.deleteUser(id).subscribe(data=>{
-      //   this.users=this.users.filter(item=>item.id != data.id);
-      // })
     }
   }
   Logout(){
-    this.router.navigate(['/cp-login']);
+    this.UserService.Logout();
+    this.router.navigate(['/']);  
+     
   }
 
 }

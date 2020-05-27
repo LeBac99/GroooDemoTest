@@ -103,9 +103,14 @@ class UserController extends Controller
         return response()->json($user);
     }
     public function savepassword(Request $request,$token){
+        $permitted_chars ='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $code= substr(str_shuffle($permitted_chars), 0, 35);
         $user= User::find($token);
         $user->password= password_hash($request->password, PASSWORD_DEFAULT);
         $user->save();
+        $model= Restart_passwords::where('email',$user->email)->first();
+        $model->token = $code;
+        $model->save();
         return response(['thanh cong']);
     }
 
